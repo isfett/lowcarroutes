@@ -1,0 +1,146 @@
+# This is the main configuration file of your application. It stores all the
+# common options for every execution environment ('prod', 'dev', 'test').
+
+# To avoid creating configuration files that are too long, we first import some
+# files that define the values for important parts of the Symfony application,
+# such as the security component and the dependency injection services
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+
+# These are the configuration parameters that define the application's behavior
+# and which are independent from the underlying technical infrastructure
+# See https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    # This parameter defines the codes of the locales (languages) enabled in the application
+    app_locales: en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl|hr|zh_CN
+    app.notifications.email_sender: anonymous@example.com
+
+# Basic configuration for the Symfony framework features
+framework:
+    # The 'ide' option turns all of the file paths in an exception page
+    # into clickable links that open the given file using your favorite IDE.
+    # Supported values are 'phpstorm', 'sublime', 'textmate', 'macvim' and 'emacs'.
+    # When 'ide' is set to null the file is opened in your web browser.
+    # See https://symfony.com/doc/current/reference/configuration/framework.html#ide
+    ide: phpstorm
+
+    # When using the HTTP Cache, ESI allows to render page fragments separately
+    # and with different cache configurations for each fragment
+    # https://symfony.com/doc/current/book/http_cache.html#edge-side-includes
+    esi:             { enabled: true }
+    translator:      { fallback: '%locale%' }
+    secret:          '%env(SYMFONY_SECRET)%'
+    router:
+        resource: '%kernel.project_dir%/app/config/routing.yml'
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale:  '%locale%'
+    trusted_hosts:   ~
+    session:
+        handler_id:  session.handler.native_file
+        save_path:   '%kernel.project_dir%/var/sessions/%kernel.environment%'
+    fragments:       ~
+    http_method_override: true
+    assets:
+        json_manifest_path: '%kernel.project_dir%/web/build/manifest.json'
+    php_errors:
+        log: true
+    cache:
+        # this value is used as part of the "namespace" generated for the cache item keys
+        # to avoid collisions when multiple apps share the same cache backend (e.g. a Redis server)
+        # See https://symfony.com/doc/current/reference/configuration/framework.html#prefix-seed
+        prefix_seed: symfony-demo
+    trusted_proxies:  [127.0.0.1]
+
+# Twig Configuration (used for rendering application templates)
+twig:
+    debug:            '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    form_themes:
+        - 'form/layout.html.twig'
+        - 'form/fields.html.twig'
+
+# Doctrine Configuration (used to access databases and manipulate their information)
+doctrine:
+    dbal:
+        driver:   pdo_mysql
+        host: db
+        dbname:   lowcarroutes
+        user:     root
+        password: root
+        charset:  UTF8
+        server_version: 5.7
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        default_entity_manager: default
+        entity_managers:
+            default:
+                auto_mapping: true
+                naming_strategy: doctrine.orm.naming_strategy.underscore
+                mappings:
+                    gedmo_translatable:
+                        type: annotation
+                        prefix: Gedmo\Translatable\Entity
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
+                        alias: GedmoTranslatable # (optional) it will default to the name set for the mapping
+                        is_bundle: false
+                    gedmo_translator:
+                        type: annotation
+                        prefix: Gedmo\Translator\Entity
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translator/Entity"
+                        alias: GedmoTranslator # (optional) it will default to the name set for the mapping
+                        is_bundle: false
+                    gedmo_loggable:
+                        type: annotation
+                        prefix: Gedmo\Loggable\Entity
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
+                        alias: GedmoLoggable # (optional) it will default to the name set for the mappingmapping
+                        is_bundle: false
+                    gedmo_tree:
+                        type: annotation
+                        prefix: Gedmo\Tree\Entity
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity"
+                        alias: GedmoTree # (optional) it will default to the name set for the mapping
+                        is_bundle: false
+                filters:
+                    softdeleteable:
+                        class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
+                        enabled: true
+
+# Swiftmailer Configuration (used to send emails)
+# instead of configuring the mailer credentials in this file, we pull
+# them from the app/config/parameters.yml file. The reason is that config.yml
+# stores options that change the application behavior and parameters.yml
+# stores options that change from one server to another
+#
+swiftmailer:
+    url : '%env(MAILER_URL)%'
+    spool: { type: memory }
+
+vich_uploader:
+    db_driver: orm # or mongodb or propel or phpcr
+
+    mappings:
+        speedbump_image:
+            uri_prefix: "/uploads/images/speedbumps"
+            upload_destination: '%kernel.root_dir%/../web/uploads/images/speedbumps'
+            namer: vich_uploader.namer_uniqid
+            inject_on_load: true
+            delete_on_update:   true
+            delete_on_remove:   true
+
+# StofDoctrine Extensions Bundle
+stof_doctrine_extensions:
+    orm:
+        default:
+            timestampable: true
+            softdeleteable: true
+            sluggable: true
+            loggable: true
+            blameable: true

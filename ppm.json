@@ -1,0 +1,16 @@
+{
+    "bridge": "HttpKernel",
+    "host": "172.20.0.5",
+    "port": 8088,
+    "workers": 4,
+    "app-env": "dev",
+    "debug": 1,
+    "logging": 1,
+    "static": false,
+    "bootstrap": "symfony",
+    "max-requests": 1000,
+    "concurrent-requests": true,
+    "socket-path": ".ppm\/run\/",
+    "pidfile": ".ppm\/ppm.pid",
+    "cgi-path": "\/usr\/local\/sbin\/php-fpm"
+}

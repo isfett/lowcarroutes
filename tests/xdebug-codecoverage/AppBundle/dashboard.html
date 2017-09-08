@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /var/www/symfony/src/AppBundle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../.css/bootstrap.min.css" rel="stylesheet">
+  <link href="../.css/nv.d3.min.css" rel="stylesheet">
+  <link href="../.css/style.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+  <script src="../.js/html5shiv.min.js"></script>
+  <script src="../.js/respond.min.js"></script>
+  <![endif]-->
+ </head>
+ <body>
+  <header>
+   <div class="container">
+    <div class="row">
+     <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><a href="../index.html">/var/www/symfony/src</a></li>
+        <li><a href="index.html">AppBundle</a></li>
+        <li class="active">(Dashboard)</li>
+
+      </ol>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Command/DeleteUserCommand.php.html#40">DeleteUserCommand</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Command/ListUsersCommand.php.html#37">ListUsersCommand</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataFixtures/ORM/PostFixtures.php.html#35">PostFixtures</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataFixtures/ORM/TagFixtures.php.html#29">TagFixtures</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataFixtures/ORM/UserFixtures.php.html#32">UserFixtures</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/SpeedBump.php.html#17">SpeedBump</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/PostRepository.php.html#30">PostRepository</a></td><td class="text-right">33%</td></tr>
+       <tr><td><a href="EventListener/CheckRequirementsSubscriber.php.html#31">CheckRequirementsSubscriber</a></td><td class="text-right">38%</td></tr>
+       <tr><td><a href="DataFixtures/FixturesTrait.php.html#17">FixturesTrait</a></td><td class="text-right">42%</td></tr>
+       <tr><td><a href="EventListener/RedirectToPreferredLocaleSubscriber.php.html#28">RedirectToPreferredLocaleSubscriber</a></td><td class="text-right">52%</td></tr>
+       <tr><td><a href="Controller/BlogController.php.html#38">BlogController</a></td><td class="text-right">58%</td></tr>
+       <tr><td><a href="Entity/Point.php.html#15">Point</a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Controller/SecurityController.php.html#25">SecurityController</a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="Entity/Post.php.html#33">Post</a></td><td class="text-right">78%</td></tr>
+       <tr><td><a href="Twig/AppExtension.php.html#30">AppExtension</a></td><td class="text-right">81%</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#26">Tag</a></td><td class="text-right">83%</td></tr>
+       <tr><td><a href="Entity/Comment.php.html#30">Comment</a></td><td class="text-right">88%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="DataFixtures/ORM/PostFixtures.php.html#35">PostFixtures</a></td><td class="text-right">132</td></tr>
+       <tr><td><a href="EventListener/CheckRequirementsSubscriber.php.html#31">CheckRequirementsSubscriber</a></td><td class="text-right">58</td></tr>
+       <tr><td><a href="Command/DeleteUserCommand.php.html#40">DeleteUserCommand</a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Command/ListUsersCommand.php.html#37">ListUsersCommand</a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Repository/PostRepository.php.html#30">PostRepository</a></td><td class="text-right">26</td></tr>
+       <tr><td><a href="Entity/Post.php.html#33">Post</a></td><td class="text-right">26</td></tr>
+       <tr><td><a href="EventListener/RedirectToPreferredLocaleSubscriber.php.html#28">RedirectToPreferredLocaleSubscriber</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Controller/BlogController.php.html#38">BlogController</a></td><td class="text-right">17</td></tr>
+       <tr><td><a href="DataFixtures/FixturesTrait.php.html#17">FixturesTrait</a></td><td class="text-right">16</td></tr>
+       <tr><td><a href="Entity/Point.php.html#15">Point</a></td><td class="text-right">15</td></tr>
+       <tr><td><a href="Twig/AppExtension.php.html#30">AppExtension</a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="DataFixtures/ORM/TagFixtures.php.html#29">TagFixtures</a></td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="DataFixtures/FixturesTrait.php.html#137"><abbr title="FixturesTrait::getRandomCommentContent">getRandomCommentContent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EventListener/CheckRequirementsSubscriber.php.html#48"><abbr title="CheckRequirementsSubscriber::getSubscribedEvents">getSubscribedEvents</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/SpeedBump.php.html#53"><abbr title="SpeedBump::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/SpeedBump.php.html#58"><abbr title="SpeedBump::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/SpeedBump.php.html#63"><abbr title="SpeedBump::getPublishedAt">getPublishedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/SpeedBump.php.html#68"><abbr title="SpeedBump::setPublishedAt">setPublishedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/SpeedBump.php.html#76"><abbr title="SpeedBump::getAuthor">getAuthor</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/SpeedBump.php.html#84"><abbr title="SpeedBump::setAuthor">setAuthor</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/SpeedBump.php.html#92"><abbr title="SpeedBump::getPoint">getPoint</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/SpeedBump.php.html#100"><abbr title="SpeedBump::setPoint">setPoint</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#44"><abbr title="Tag::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#76"><abbr title="User::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EventListener/CheckRequirementsSubscriber.php.html#66"><abbr title="CheckRequirementsSubscriber::handleConsoleError">handleConsoleError</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Post.php.html#212"><abbr title="Post::removeComment">removeComment</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EventListener/CheckRequirementsSubscriber.php.html#105"><abbr title="CheckRequirementsSubscriber::isSQLitePlatform">isSQLitePlatform</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EventListener/CommentNotificationSubscriber.php.html#64"><abbr title="CommentNotificationSubscriber::getSubscribedEvents">getSubscribedEvents</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EventListener/RedirectToPreferredLocaleSubscriber.php.html#76"><abbr title="RedirectToPreferredLocaleSubscriber::getSubscribedEvents">getSubscribedEvents</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/PostRepository.php.html#69"><abbr title="PostRepository::findBySearchQuery">findBySearchQuery</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/PostRepository.php.html#101"><abbr title="PostRepository::sanitizeSearchQuery">sanitizeSearchQuery</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/PostRepository.php.html#113"><abbr title="PostRepository::extractSearchTerms">extractSearchTerms</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/PostRepository.php.html#117"><abbr title="PostRepository::anonymousFunction:117#426">anonymousFunction:117#426</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Twig/AppExtension.php.html#51"><abbr title="AppExtension::getFilters">getFilters</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Twig/AppExtension.php.html#61"><abbr title="AppExtension::getFunctions">getFunctions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataFixtures/FixturesTrait.php.html#95"><abbr title="FixturesTrait::getTagNames">getTagNames</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataFixtures/FixturesTrait.php.html#110"><abbr title="FixturesTrait::getRandomPostTitles">getRandomPostTitles</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Post.php.html#238"><abbr title="Post::removeTag">removeTag</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Post.php.html#231"><abbr title="Post::addTag">addTag</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Point.php.html#96"><abbr title="Point::setLinkId">setLinkId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SecurityController.php.html#48"><abbr title="SecurityController::logoutAction">logoutAction</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Command/DeleteUserCommand.php.html#78"><abbr title="DeleteUserCommand::initialize">initialize</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Command/DeleteUserCommand.php.html#86"><abbr title="DeleteUserCommand::interact">interact</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Command/DeleteUserCommand.php.html#107"><abbr title="DeleteUserCommand::execute">execute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Command/ListUsersCommand.php.html#43"><abbr title="ListUsersCommand::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Command/ListUsersCommand.php.html#55"><abbr title="ListUsersCommand::configure">configure</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Command/ListUsersCommand.php.html#89"><abbr title="ListUsersCommand::execute">execute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Command/ListUsersCommand.php.html#96"><abbr title="ListUsersCommand::anonymousFunction:96#350">anonymousFunction:96#350</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Command/ListUsersCommand.php.html#133"><abbr title="ListUsersCommand::sendReport">sendReport</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Point.php.html#88"><abbr title="Point::getLinkId">getLinkId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Command/DeleteUserCommand.php.html#48"><abbr title="DeleteUserCommand::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/BlogController.php.html#161"><abbr title="BlogController::searchAction">searchAction</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataFixtures/ORM/PostFixtures.php.html#43"><abbr title="PostFixtures::load">load</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataFixtures/ORM/PostFixtures.php.html#90"><abbr title="PostFixtures::getDependencies">getDependencies</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataFixtures/ORM/PostFixtures.php.html#98"><abbr title="PostFixtures::getRandomUser">getRandomUser</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataFixtures/ORM/PostFixtures.php.html#106"><abbr title="PostFixtures::getRandomTags">getRandomTags</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataFixtures/ORM/TagFixtures.php.html#36"><abbr title="TagFixtures::load">load</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataFixtures/ORM/UserFixtures.php.html#39"><abbr title="UserFixtures::load">load</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Comment.php.html#117"><abbr title="Comment::setPublishedAt">setPublishedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Point.php.html#48"><abbr title="Point::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Point.php.html#56"><abbr title="Point::getLat">getLat</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Point.php.html#72"><abbr title="Point::getLng">getLng</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Command/DeleteUserCommand.php.html#59"><abbr title="DeleteUserCommand::configure">configure</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EventListener/RedirectToPreferredLocaleSubscriber.php.html#86"><abbr title="RedirectToPreferredLocaleSubscriber::onKernelRequest">onKernelRequest</abbr></a></td><td class="text-right">30%</td></tr>
+       <tr><td><a href="Controller/BlogController.php.html#71"><abbr title="BlogController::postShowAction">postShowAction</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Controller/BlogController.php.html#96"><abbr title="BlogController::commentNewAction">commentNewAction</abbr></a></td><td class="text-right">80%</td></tr>
+       <tr><td><a href="EventListener/RedirectToPreferredLocaleSubscriber.php.html#54"><abbr title="RedirectToPreferredLocaleSubscriber::__construct">__construct</abbr></a></td><td class="text-right">80%</td></tr>
+       <tr><td><a href="Command/AddUserCommand.php.html#198"><abbr title="AddUserCommand::validateUserData">validateUserData</abbr></a></td><td class="text-right">81%</td></tr>
+       <tr><td><a href="EventListener/CheckRequirementsSubscriber.php.html#84"><abbr title="CheckRequirementsSubscriber::handleKernelException">handleKernelException</abbr></a></td><td class="text-right">83%</td></tr>
+       <tr><td><a href="Command/AddUserCommand.php.html#105"><abbr title="AddUserCommand::interact">interact</abbr></a></td><td class="text-right">84%</td></tr>
+       <tr><td><a href="DataFixtures/FixturesTrait.php.html#122"><abbr title="FixturesTrait::getRandomPostSummary">getRandomPostSummary</abbr></a></td><td class="text-right">85%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="DataFixtures/ORM/PostFixtures.php.html#43"><abbr title="PostFixtures::load">load</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="EventListener/CheckRequirementsSubscriber.php.html#66"><abbr title="CheckRequirementsSubscriber::handleConsoleError">handleConsoleError</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="EventListener/RedirectToPreferredLocaleSubscriber.php.html#86"><abbr title="RedirectToPreferredLocaleSubscriber::onKernelRequest">onKernelRequest</abbr></a></td><td class="text-right">13</td></tr>
+       <tr><td><a href="DataFixtures/ORM/PostFixtures.php.html#106"><abbr title="PostFixtures::getRandomTags">getRandomTags</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/BlogController.php.html#161"><abbr title="BlogController::searchAction">searchAction</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Repository/PostRepository.php.html#69"><abbr title="PostRepository::findBySearchQuery">findBySearchQuery</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Command/AddUserCommand.php.html#105"><abbr title="AddUserCommand::interact">interact</abbr></a></td><td class="text-right">9</td></tr>
+       <tr><td><a href="DataFixtures/ORM/TagFixtures.php.html#36"><abbr title="TagFixtures::load">load</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/Post.php.html#231"><abbr title="Post::addTag">addTag</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Command/ListUsersCommand.php.html#89"><abbr title="ListUsersCommand::execute">execute</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="EventListener/CheckRequirementsSubscriber.php.html#105"><abbr title="CheckRequirementsSubscriber::isSQLitePlatform">isSQLitePlatform</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Command/DeleteUserCommand.php.html#107"><abbr title="DeleteUserCommand::execute">execute</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Command/DeleteUserCommand.php.html#86"><abbr title="DeleteUserCommand::interact">interact</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="EventListener/CheckRequirementsSubscriber.php.html#84"><abbr title="CheckRequirementsSubscriber::handleKernelException">handleKernelException</abbr></a></td><td class="text-right">5</td></tr>
+       <tr><td><a href="EventListener/RedirectToPreferredLocaleSubscriber.php.html#54"><abbr title="RedirectToPreferredLocaleSubscriber::__construct">__construct</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Controller/BlogController.php.html#96"><abbr title="BlogController::commentNewAction">commentNewAction</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Command/AddUserCommand.php.html#198"><abbr title="AddUserCommand::validateUserData">validateUserData</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Controller/BlogController.php.html#71"><abbr title="BlogController::postShowAction">postShowAction</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="DataFixtures/FixturesTrait.php.html#122"><abbr title="FixturesTrait::getRandomPostSummary">getRandomPostSummary</abbr></a></td><td class="text-right">2</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 5.2.2</a> using <a href="https://secure.php.net/" target="_top">PHP 7.0.22</a> with <a href="https://xdebug.org/">Xdebug 2.5.5</a> and <a href="https://phpunit.de/">PHPUnit 6.2.4</a> at Tue Sep 5 8:15:05 UTC 2017.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../.js/jquery.min.js" type="text/javascript"></script>
+  <script src="../.js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="../.js/holder.min.js" type="text/javascript"></script>
+  <script src="../.js/d3.min.js" type="text/javascript"></script>
+  <script src="../.js/nv.d3.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([6,0,0,0,2,1,2,1,2,3,3,15], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([51,0,0,0,1,0,0,1,0,6,1,91], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[100,0,"<a href=\"AppBundle.php.html#38\">AppBundle<\/a>"],[90.789473684211,20,"<a href=\"Command\/AddUserCommand.php.html#45\">AddUserCommand<\/a>"],[0,7,"<a href=\"Command\/DeleteUserCommand.php.html#40\">DeleteUserCommand<\/a>"],[0,6,"<a href=\"Command\/ListUsersCommand.php.html#37\">ListUsersCommand<\/a>"],[58.333333333333,10,"<a href=\"Controller\/BlogController.php.html#38\">BlogController<\/a>"],[75,2,"<a href=\"Controller\/SecurityController.php.html#25\">SecurityController<\/a>"],[0,11,"<a href=\"DataFixtures\/ORM\/PostFixtures.php.html#35\">PostFixtures<\/a>"],[0,2,"<a href=\"DataFixtures\/ORM\/TagFixtures.php.html#29\">TagFixtures<\/a>"],[0,1,"<a href=\"DataFixtures\/ORM\/UserFixtures.php.html#32\">UserFixtures<\/a>"],[88.235294117647,11,"<a href=\"Entity\/Comment.php.html#30\">Comment<\/a>"],[66.666666666667,11,"<a href=\"Entity\/Point.php.html#15\">Point<\/a>"],[78.378378378378,22,"<a href=\"Entity\/Post.php.html#33\">Post<\/a>"],[0,8,"<a href=\"Entity\/SpeedBump.php.html#17\">SpeedBump<\/a>"],[83.333333333333,5,"<a href=\"Entity\/Tag.php.html#26\">Tag<\/a>"],[96.666666666667,16,"<a href=\"Entity\/User.php.html#30\">User<\/a>"],[38.888888888889,14,"<a href=\"EventListener\/CheckRequirementsSubscriber.php.html#31\">CheckRequirementsSubscriber<\/a>"],[95.652173913043,3,"<a href=\"EventListener\/CommentNotificationSubscriber.php.html#26\">CommentNotificationSubscriber<\/a>"],[52.380952380952,10,"<a href=\"EventListener\/RedirectToPreferredLocaleSubscriber.php.html#28\">RedirectToPreferredLocaleSubscriber<\/a>"],[100,0,"<a href=\"Events.php.html#21\">Events<\/a>"],[100,2,"<a href=\"Form\/CommentType.php.html#29\">CommentType<\/a>"],[100,6,"<a href=\"Form\/DataTransformer\/TagArrayToStringTransformer.php.html#27\">TagArrayToStringTransformer<\/a>"],[100,2,"<a href=\"Form\/PostType.php.html#29\">PostType<\/a>"],[100,4,"<a href=\"Form\/Type\/DateTimePickerType.php.html#29\">DateTimePickerType<\/a>"],[100,4,"<a href=\"Form\/Type\/TagsInputType.php.html#32\">TagsInputType<\/a>"],[100,0,"<a href=\"Repository\/PointRepository.php.html#11\">PointRepository<\/a>"],[33.333333333333,8,"<a href=\"Repository\/PostRepository.php.html#30\">PostRepository<\/a>"],[100,0,"<a href=\"Repository\/SpeedBumpRepository.php.html#11\">SpeedBumpRepository<\/a>"],[100,0,"<a href=\"Repository\/UserRepository.php.html#26\">UserRepository<\/a>"],[100,4,"<a href=\"Security\/PostVoter.php.html#27\">PostVoter<\/a>"],[81.818181818182,6,"<a href=\"Twig\/AppExtension.php.html#30\">AppExtension<\/a>"],[100,2,"<a href=\"Utils\/Markdown.php.html#22\">Markdown<\/a>"],[100,1,"<a href=\"Utils\/MomentFormatConverter.php.html#19\">MomentFormatConverter<\/a>"],[100,1,"<a href=\"Utils\/Slugger.php.html#21\">Slugger<\/a>"],[100,11,"<a href=\"Utils\/Validator.php.html#14\">Validator<\/a>"],[42.105263157895,7,"<a href=\"DataFixtures\/FixturesTrait.php.html#17\">FixturesTrait<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[100,1,"<a href=\"Command\/AddUserCommand.php.html#54\">AddUserCommand::__construct<\/a>"],[100,1,"<a href=\"Command\/AddUserCommand.php.html#66\">AddUserCommand::configure<\/a>"],[100,1,"<a href=\"Command\/AddUserCommand.php.html#87\">AddUserCommand::initialize<\/a>"],[84.615384615385,9,"<a href=\"Command\/AddUserCommand.php.html#105\">AddUserCommand::interact<\/a>"],[95.454545454545,4,"<a href=\"Command\/AddUserCommand.php.html#162\">AddUserCommand::execute<\/a>"],[81.818181818182,3,"<a href=\"Command\/AddUserCommand.php.html#198\">AddUserCommand::validateUserData<\/a>"],[100,1,"<a href=\"Command\/AddUserCommand.php.html#227\">AddUserCommand::getCommandHelp<\/a>"],[0,1,"<a href=\"Command\/DeleteUserCommand.php.html#48\">DeleteUserCommand::__construct<\/a>"],[0,1,"<a href=\"Command\/DeleteUserCommand.php.html#59\">DeleteUserCommand::configure<\/a>"],[0,1,"<a href=\"Command\/DeleteUserCommand.php.html#78\">DeleteUserCommand::initialize<\/a>"],[0,2,"<a href=\"Command\/DeleteUserCommand.php.html#86\">DeleteUserCommand::interact<\/a>"],[0,2,"<a href=\"Command\/DeleteUserCommand.php.html#107\">DeleteUserCommand::execute<\/a>"],[0,1,"<a href=\"Command\/ListUsersCommand.php.html#43\">ListUsersCommand::__construct<\/a>"],[0,1,"<a href=\"Command\/ListUsersCommand.php.html#55\">ListUsersCommand::configure<\/a>"],[0,2,"<a href=\"Command\/ListUsersCommand.php.html#89\">ListUsersCommand::execute<\/a>"],[0,1,"<a href=\"Command\/ListUsersCommand.php.html#96\">ListUsersCommand::anonymousFunction:96#350<\/a>"],[0,1,"<a href=\"Command\/ListUsersCommand.php.html#133\">ListUsersCommand::sendReport<\/a>"],[100,1,"<a href=\"Controller\/BlogController.php.html#51\">BlogController::indexAction<\/a>"],[66.666666666667,2,"<a href=\"Controller\/BlogController.php.html#71\">BlogController::postShowAction<\/a>"],[80,3,"<a href=\"Controller\/BlogController.php.html#96\">BlogController::commentNewAction<\/a>"],[100,1,"<a href=\"Controller\/BlogController.php.html#145\">BlogController::commentFormAction<\/a>"],[0,3,"<a href=\"Controller\/BlogController.php.html#161\">BlogController::searchAction<\/a>"],[100,1,"<a href=\"Controller\/SecurityController.php.html#30\">SecurityController::loginAction<\/a>"],[0,1,"<a href=\"Controller\/SecurityController.php.html#48\">SecurityController::logoutAction<\/a>"],[0,6,"<a href=\"DataFixtures\/ORM\/PostFixtures.php.html#43\">PostFixtures::load<\/a>"],[0,1,"<a href=\"DataFixtures\/ORM\/PostFixtures.php.html#90\">PostFixtures::getDependencies<\/a>"],[0,1,"<a href=\"DataFixtures\/ORM\/PostFixtures.php.html#98\">PostFixtures::getRandomUser<\/a>"],[0,3,"<a href=\"DataFixtures\/ORM\/PostFixtures.php.html#106\">PostFixtures::getRandomTags<\/a>"],[0,2,"<a href=\"DataFixtures\/ORM\/TagFixtures.php.html#36\">TagFixtures::load<\/a>"],[0,1,"<a href=\"DataFixtures\/ORM\/UserFixtures.php.html#39\">UserFixtures::load<\/a>"],[100,1,"<a href=\"Entity\/Comment.php.html#79\">Comment::__construct<\/a>"],[100,1,"<a href=\"Entity\/Comment.php.html#87\">Comment::isLegitComment<\/a>"],[100,1,"<a href=\"Entity\/Comment.php.html#94\">Comment::getId<\/a>"],[100,1,"<a href=\"Entity\/Comment.php.html#99\">Comment::getContent<\/a>"],[100,1,"<a href=\"Entity\/Comment.php.html#107\">Comment::setContent<\/a>"],[100,1,"<a href=\"Entity\/Comment.php.html#112\">Comment::getPublishedAt<\/a>"],[0,1,"<a href=\"Entity\/Comment.php.html#117\">Comment::setPublishedAt<\/a>"],[100,1,"<a href=\"Entity\/Comment.php.html#125\">Comment::getAuthor<\/a>"],[100,1,"<a href=\"Entity\/Comment.php.html#133\">Comment::setAuthor<\/a>"],[100,1,"<a href=\"Entity\/Comment.php.html#138\">Comment::getPost<\/a>"],[100,1,"<a href=\"Entity\/Comment.php.html#143\">Comment::setPost<\/a>"],[0,1,"<a href=\"Entity\/Point.php.html#48\">Point::getId<\/a>"],[0,1,"<a href=\"Entity\/Point.php.html#56\">Point::getLat<\/a>"],[100,1,"<a href=\"Entity\/Point.php.html#64\">Point::setLat<\/a>"],[0,1,"<a href=\"Entity\/Point.php.html#72\">Point::getLng<\/a>"],[100,1,"<a href=\"Entity\/Point.php.html#80\">Point::setLng<\/a>"],[0,1,"<a href=\"Entity\/Point.php.html#88\">Point::getLinkId<\/a>"],[0,1,"<a href=\"Entity\/Point.php.html#96\">Point::setLinkId<\/a>"],[100,2,"<a href=\"Entity\/Point.php.html#104\">Point::isValidLat<\/a>"],[100,2,"<a href=\"Entity\/Point.php.html#118\">Point::isValidLng<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#122\">Post::__construct<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#129\">Post::getId<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#134\">Post::getTitle<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#142\">Post::setTitle<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#147\">Post::getSlug<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#155\">Post::setSlug<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#160\">Post::getContent<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#168\">Post::setContent<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#173\">Post::getPublishedAt<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#178\">Post::setPublishedAt<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#186\">Post::getAuthor<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#194\">Post::setAuthor<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#199\">Post::getComments<\/a>"],[100,2,"<a href=\"Entity\/Post.php.html#204\">Post::addComment<\/a>"],[0,1,"<a href=\"Entity\/Post.php.html#212\">Post::removeComment<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#218\">Post::getSummary<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#226\">Post::setSummary<\/a>"],[0,2,"<a href=\"Entity\/Post.php.html#231\">Post::addTag<\/a>"],[0,1,"<a href=\"Entity\/Post.php.html#238\">Post::removeTag<\/a>"],[100,1,"<a href=\"Entity\/Post.php.html#243\">Post::getTags<\/a>"],[0,1,"<a href=\"Entity\/SpeedBump.php.html#53\">SpeedBump::__construct<\/a>"],[0,1,"<a href=\"Entity\/SpeedBump.php.html#58\">SpeedBump::getId<\/a>"],[0,1,"<a href=\"Entity\/SpeedBump.php.html#63\">SpeedBump::getPublishedAt<\/a>"],[0,1,"<a href=\"Entity\/SpeedBump.php.html#68\">SpeedBump::setPublishedAt<\/a>"],[0,1,"<a href=\"Entity\/SpeedBump.php.html#76\">SpeedBump::getAuthor<\/a>"],[0,1,"<a href=\"Entity\/SpeedBump.php.html#84\">SpeedBump::setAuthor<\/a>"],[0,1,"<a href=\"Entity\/SpeedBump.php.html#92\">SpeedBump::getPoint<\/a>"],[0,1,"<a href=\"Entity\/SpeedBump.php.html#100\">SpeedBump::setPoint<\/a>"],[0,1,"<a href=\"Entity\/Tag.php.html#44\">Tag::getId<\/a>"],[100,1,"<a href=\"Entity\/Tag.php.html#52\">Tag::setName<\/a>"],[100,1,"<a href=\"Entity\/Tag.php.html#57\">Tag::getName<\/a>"],[100,1,"<a href=\"Entity\/Tag.php.html#65\">Tag::jsonSerialize<\/a>"],[100,1,"<a href=\"Entity\/Tag.php.html#74\">Tag::__toString<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#76\">User::getId<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#84\">User::setFullName<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#89\">User::getFullName<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#94\">User::getUsername<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#102\">User::setUsername<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#107\">User::getEmail<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#115\">User::setEmail<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#120\">User::getPassword<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#128\">User::setPassword<\/a>"],[100,2,"<a href=\"Entity\/User.php.html#136\">User::getRoles<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#148\">User::setRoles<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#158\">User::getSalt<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#170\">User::eraseCredentials<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#177\">User::serialize<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#189\">User::unserialize<\/a>"],[100,1,"<a href=\"EventListener\/CheckRequirementsSubscriber.php.html#39\">CheckRequirementsSubscriber::__construct<\/a>"],[0,1,"<a href=\"EventListener\/CheckRequirementsSubscriber.php.html#48\">CheckRequirementsSubscriber::getSubscribedEvents<\/a>"],[0,5,"<a href=\"EventListener\/CheckRequirementsSubscriber.php.html#66\">CheckRequirementsSubscriber::handleConsoleError<\/a>"],[83.333333333333,5,"<a href=\"EventListener\/CheckRequirementsSubscriber.php.html#84\">CheckRequirementsSubscriber::handleKernelException<\/a>"],[0,2,"<a href=\"EventListener\/CheckRequirementsSubscriber.php.html#105\">CheckRequirementsSubscriber::isSQLitePlatform<\/a>"],[100,1,"<a href=\"EventListener\/CommentNotificationSubscriber.php.html#56\">CommentNotificationSubscriber::__construct<\/a>"],[0,1,"<a href=\"EventListener\/CommentNotificationSubscriber.php.html#64\">CommentNotificationSubscriber::getSubscribedEvents<\/a>"],[100,1,"<a href=\"EventListener\/CommentNotificationSubscriber.php.html#74\">CommentNotificationSubscriber::onCommentCreated<\/a>"],[80,4,"<a href=\"EventListener\/RedirectToPreferredLocaleSubscriber.php.html#54\">RedirectToPreferredLocaleSubscriber::__construct<\/a>"],[0,1,"<a href=\"EventListener\/RedirectToPreferredLocaleSubscriber.php.html#76\">RedirectToPreferredLocaleSubscriber::getSubscribedEvents<\/a>"],[30,5,"<a href=\"EventListener\/RedirectToPreferredLocaleSubscriber.php.html#86\">RedirectToPreferredLocaleSubscriber::onKernelRequest<\/a>"],[100,1,"<a href=\"Form\/CommentType.php.html#34\">CommentType::buildForm<\/a>"],[100,1,"<a href=\"Form\/CommentType.php.html#50\">CommentType::configureOptions<\/a>"],[100,1,"<a href=\"Form\/DataTransformer\/TagArrayToStringTransformer.php.html#31\">TagArrayToStringTransformer::__construct<\/a>"],[100,1,"<a href=\"Form\/DataTransformer\/TagArrayToStringTransformer.php.html#39\">TagArrayToStringTransformer::transform<\/a>"],[100,4,"<a href=\"Form\/DataTransformer\/TagArrayToStringTransformer.php.html#52\">TagArrayToStringTransformer::reverseTransform<\/a>"],[100,1,"<a href=\"Form\/PostType.php.html#34\">PostType::buildForm<\/a>"],[100,1,"<a href=\"Form\/PostType.php.html#70\">PostType::configureOptions<\/a>"],[100,1,"<a href=\"Form\/Type\/DateTimePickerType.php.html#33\">DateTimePickerType::__construct<\/a>"],[100,1,"<a href=\"Form\/Type\/DateTimePickerType.php.html#41\">DateTimePickerType::buildView<\/a>"],[100,1,"<a href=\"Form\/Type\/DateTimePickerType.php.html#50\">DateTimePickerType::configureOptions<\/a>"],[100,1,"<a href=\"Form\/Type\/DateTimePickerType.php.html#60\">DateTimePickerType::getParent<\/a>"],[100,1,"<a href=\"Form\/Type\/TagsInputType.php.html#36\">TagsInputType::__construct<\/a>"],[100,1,"<a href=\"Form\/Type\/TagsInputType.php.html#44\">TagsInputType::buildForm<\/a>"],[100,1,"<a href=\"Form\/Type\/TagsInputType.php.html#59\">TagsInputType::buildView<\/a>"],[100,1,"<a href=\"Form\/Type\/TagsInputType.php.html#67\">TagsInputType::getParent<\/a>"],[100,1,"<a href=\"Repository\/PostRepository.php.html#37\">PostRepository::findLatest<\/a>"],[100,1,"<a href=\"Repository\/PostRepository.php.html#54\">PostRepository::createPaginator<\/a>"],[0,3,"<a href=\"Repository\/PostRepository.php.html#69\">PostRepository::findBySearchQuery<\/a>"],[0,1,"<a href=\"Repository\/PostRepository.php.html#101\">PostRepository::sanitizeSearchQuery<\/a>"],[0,1,"<a href=\"Repository\/PostRepository.php.html#113\">PostRepository::extractSearchTerms<\/a>"],[0,1,"<a href=\"Repository\/PostRepository.php.html#117\">PostRepository::anonymousFunction:117#426<\/a>"],[100,2,"<a href=\"Security\/PostVoter.php.html#38\">PostVoter::supports<\/a>"],[100,2,"<a href=\"Security\/PostVoter.php.html#47\">PostVoter::voteOnAttribute<\/a>"],[100,1,"<a href=\"Twig\/AppExtension.php.html#42\">AppExtension::__construct<\/a>"],[0,1,"<a href=\"Twig\/AppExtension.php.html#51\">AppExtension::getFilters<\/a>"],[0,1,"<a href=\"Twig\/AppExtension.php.html#61\">AppExtension::getFunctions<\/a>"],[100,1,"<a href=\"Twig\/AppExtension.php.html#75\">AppExtension::markdownToHtml<\/a>"],[100,2,"<a href=\"Twig\/AppExtension.php.html#87\">AppExtension::getLocales<\/a>"],[100,1,"<a href=\"Utils\/Markdown.php.html#34\">Markdown::__construct<\/a>"],[100,1,"<a href=\"Utils\/Markdown.php.html#49\">Markdown::toHtml<\/a>"],[100,1,"<a href=\"Utils\/MomentFormatConverter.php.html#48\">MomentFormatConverter::convert<\/a>"],[100,1,"<a href=\"Utils\/Slugger.php.html#28\">Slugger::slugify<\/a>"],[100,3,"<a href=\"Utils\/Validator.php.html#16\">Validator::validateUsername<\/a>"],[100,3,"<a href=\"Utils\/Validator.php.html#29\">Validator::validatePassword<\/a>"],[100,3,"<a href=\"Utils\/Validator.php.html#42\">Validator::validateEmail<\/a>"],[100,2,"<a href=\"Utils\/Validator.php.html#55\">Validator::validateFullName<\/a>"],[100,1,"<a href=\"DataFixtures\/FixturesTrait.php.html#19\">FixturesTrait::getPostContent<\/a>"],[100,1,"<a href=\"DataFixtures\/FixturesTrait.php.html#59\">FixturesTrait::getPhrases<\/a>"],[0,1,"<a href=\"DataFixtures\/FixturesTrait.php.html#95\">FixturesTrait::getTagNames<\/a>"],[0,1,"<a href=\"DataFixtures\/FixturesTrait.php.html#110\">FixturesTrait::getRandomPostTitles<\/a>"],[85.714285714286,2,"<a href=\"DataFixtures\/FixturesTrait.php.html#122\">FixturesTrait::getRandomPostSummary<\/a>"],[0,1,"<a href=\"DataFixtures\/FixturesTrait.php.html#137\">FixturesTrait::getRandomCommentContent<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>
