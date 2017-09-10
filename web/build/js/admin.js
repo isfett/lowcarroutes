@@ -6,16 +6,12 @@ webpackJsonp([0],{/***/
 /*! all exports used */
 /***/
 function(e,t,n){"use strict";/* WEBPACK VAR INJECTION */
-(function(e){n(/*! eonasdan-bootstrap-datetimepicker */"./node_modules/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js"),n(/*! typeahead.js */"./node_modules/typeahead.js/dist/typeahead.bundle.js");var t=n(/*! bloodhound-js */"./node_modules/bloodhound-js/index.js"),s=function(e){return e&&e.__esModule?e:{default:e}}(t);n(/*! bootstrap-tagsinput */"./node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.js"),e(function(){
-// Datetime picker initialization.
+(function(e){n(/*! eonasdan-bootstrap-datetimepicker */"./node_modules/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js"),n(/*! typeahead.js */"./node_modules/typeahead.js/dist/typeahead.bundle.js");var t=n(/*! bloodhound-js */"./node_modules/bloodhound-js/index.js"),s=function(e){return e&&e.__esModule?e:{default:e}}(t);n(/*! bootstrap-tagsinput */"./node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.js"),e(function(){// Datetime picker initialization.
 // See http://eonasdan.github.io/bootstrap-datetimepicker/
-e('[data-toggle="datetimepicker"]').datetimepicker({icons:{time:"fa fa-clock-o",date:"fa fa-calendar",up:"fa fa-chevron-up",down:"fa fa-chevron-down",previous:"fa fa-chevron-left",next:"fa fa-chevron-right",today:"fa fa-check-circle-o",clear:"fa fa-trash",close:"fa fa-remove"}});
-// Bootstrap-tagsinput initialization
+e('[data-toggle="datetimepicker"]').datetimepicker({icons:{time:"fa fa-clock-o",date:"fa fa-calendar",up:"fa fa-chevron-up",down:"fa fa-chevron-down",previous:"fa fa-chevron-left",next:"fa fa-chevron-right",today:"fa fa-check-circle-o",clear:"fa fa-trash",close:"fa fa-remove"}});// Bootstrap-tagsinput initialization
 // http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/examples/
-var t=e('input[data-toggle="tagsinput"]');if(t.length){var n=new s.default({local:t.data("tags"),queryTokenizer:s.default.tokenizers.whitespace,datumTokenizer:s.default.tokenizers.whitespace});n.initialize(),t.tagsinput({trimValue:!0,focusClass:"focus",typeaheadjs:{name:"tags",source:n.ttAdapter()}})}}),
-// Handling the modal confirmation message.
-e(document).on("submit","form[data-confirmation]",function(t){var n=e(this),s=e("#confirmationModal");"yes"!==s.data("result")&&(
-//cancel submit event
+var t=e('input[data-toggle="tagsinput"]');if(t.length){var n=new s.default({local:t.data("tags"),queryTokenizer:s.default.tokenizers.whitespace,datumTokenizer:s.default.tokenizers.whitespace});n.initialize(),t.tagsinput({trimValue:!0,focusClass:"focus",typeaheadjs:{name:"tags",source:n.ttAdapter()}})}}),// Handling the modal confirmation message.
+e(document).on("submit","form[data-confirmation]",function(t){var n=e(this),s=e("#confirmationModal");"yes"!==s.data("result")&&(//cancel submit event
 t.preventDefault(),s.off("click","#btnYes").on("click","#btnYes",function(){s.data("result","yes"),n.find('input[type="submit"]').attr("disabled","disabled"),n.submit()}).modal("show"))})}).call(t,n(/*! jquery */"./node_modules/jquery/dist/jquery.js"))},/***/
 "./node_modules/bloodhound-js/index.js":/*!*********************************************!*\
   !*** ./node_modules/bloodhound-js/index.js ***!

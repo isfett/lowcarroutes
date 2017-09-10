@@ -23,6 +23,7 @@ Encore
     .addEntry('js/login', './assets/js/login.js')
     .addEntry('js/admin', './assets/js/admin.js')
     .addEntry('js/search', './assets/js/search.js')
+    //.addEntry('js/mapquest-gl', './assets/js/mapquest-gl.js')
     .addEntry('js/propeller', './assets/js/propeller.js')
     .addStyleEntry('css/app', ['./assets/scss/app.scss','./assets/css/propeller.css'])
     .addStyleEntry('css/admin', ['./assets/scss/admin.scss'])

@@ -24,7 +24,6 @@ class Map {
         this.id = id;
         this.element = $('#'+this.id);
         this.route = route;
-        this.loadSpeedBumps();
     }
     loadSpeedBumps()
     {
@@ -37,6 +36,7 @@ class Map {
                     console.log('data', data);
                     Map.speedbumps.push(new SpeedBump(data));
                 }
+                Map.createRoute();
             })
             .catch(function (error) {
                 console.log(error);
@@ -115,18 +115,31 @@ class Map {
         this.map = new mqgl.Map(this.id, this.mapquest_apikey, this.options);
         if(this.start && this.destination)
         {
-            this.createRoute();
+            this.loadSpeedBumps();
         }
     }
     fitBounds/* istanbul ignore next */()
     {
         this.map.fitBounds();
     }
+    getAvoidLinkIds()
+    {
+        let ids = [];
+        for(let speedbump of this.speedbumps)
+        {
+            ids.push(speedbump.getPoint().getLinkId());
+        }
+        return ids.join(',');
+    }
     createRoute/* istanbul ignore next */()
     {
         let Map = this;
         this.map.load( () => {
-            Map.map.directions.route(Map.getRoute())
+            Map.map.directions.route(Map.getRoute(),{
+                locale:'de_DE',
+                mustAvoidLinkIds: Map.getAvoidLinkIds(),
+                showTraffic: true,
+            })
                 .then( data => {
                     console.log('data', data);
                     Map.fitBounds();
