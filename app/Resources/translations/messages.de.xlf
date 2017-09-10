@@ -293,8 +293,12 @@
                 <target>Die neuesten Posts, die auf dem Symfony Blog veröffentlicht wurden.</target>
             </trans-unit>
             <trans-unit id="menu.rss">
-                <source>menu.rss</source>
-                <target>Blog Posts RSS</target>
+               <source>menu.rss</source>
+               <target>Blog Posts RSS</target>
+           </trans-unit>
+           <trans-unit id="menu.search">
+                <source>menu.search</source>
+                <target>Suche</target>
             </trans-unit>
             <trans-unit id="label.tags">
                 <source>label.tags</source>

@@ -14,6 +14,10 @@
             <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
         {% endblock %}
 
+        <!--Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-gl-js/v0.4.0/mapquest-gl.css"/>
+
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
 
@@ -135,9 +139,14 @@
             </footer>
         {% endblock %}
 
+        {# <div id="map" style="width: 100%; height: 530px; margin-bottom: 100px;"></div> #}
+
         {% block javascripts %}
+            {%  include 'javascript/inject_vars.html.twig' %}
+            <script src="//api.mqcdn.com/sdk/mapquest-gl-js/v0.4.0/mapquest-gl.js"></script>
             <script src="{{ asset('build/manifest.js') }}"></script>
             <script src="{{ asset('build/js/common.js') }}"></script>
+            <script src="{{ asset('build/js/propeller.js') }}"></script>
             <script src="{{ asset('build/js/app.js') }}"></script>
         {% endblock %}
 

@@ -115,17 +115,17 @@ class SpeedBump
 
     /**
     /**
-     * @return string
+     * @return int
      */
-    public function getStatus(): string
+    public function getStatus(): int
     {
         return $this->status;
     }
 
     /**
-     * @param string $status
+     * @param int $status
      */
-    public function setStatus(string $status)
+    public function setStatus(int $status)
     {
         $this->status = $status;
     }

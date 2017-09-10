@@ -50,3 +50,14 @@ services:
     slugger:
         alias: AppBundle\Utils\Slugger
         public: true
+
+    AppBundle\DataCollector\RequestCollector:
+        tags:
+            -
+                name:     data_collector
+                template: 'data_collector/template.html.twig'
+                # must match the value returned by the getName() method
+                id:       'app.request_collector'
+                # optional priority
+                # priority: 300
+        public: false

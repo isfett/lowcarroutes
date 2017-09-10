@@ -18,6 +18,10 @@ use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 /**
  * Controller used to manage blog contents in the public part of the site.
@@ -29,7 +33,7 @@ use Symfony\Component\HttpFoundation\Response;
 class SpeedBumpController extends Controller
 {
     /**
-     * @Route("/", defaults={"page": "1"}, name="speedbump_index")
+     * @Route("/", defaults={"page": "1","_format"="html"}, name="speedbump_index")
      * @Method("GET")
      * @Cache(smaxage="10")
      *
@@ -40,6 +44,24 @@ class SpeedBumpController extends Controller
         $speedBumps = $em->getRepository(SpeedBump::class)->findLatest($page);
 
         return $this->render('speedbump/index.html.twig', ['speedBumps' => $speedBumps]);
+    }
+
+    /**
+     * @Route("/all", defaults={"page": "1", "_format"="json"}, name="speedbump_all")
+     * @Method("GET")
+     * @Cache(smaxage="10")
+     *
+     */
+    public function indexAllAction($page)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $speedBumps = $em->getRepository(SpeedBump::class)->findAll();
+        $encoders = array(new JsonEncoder());
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setIgnoredAttributes(array('createdBy','updatedBy'));
+        $serializer = new Serializer(array($normalizer, new DateTimeNormalizer()), $encoders);
+
+        return new Response($serializer->serialize($speedBumps,'json'));
     }
 
     /**

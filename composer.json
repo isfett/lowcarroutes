@@ -41,6 +41,8 @@
         "symfony/debug": "^3.3",
         "symfony/monolog-bundle": "^3.0",
         "symfony/polyfill-apcu": "^1.0",
+        "symfony/property-access": "^3.3",
+        "symfony/serializer": "^3.3",
         "symfony/swiftmailer-bundle": "^2.3",
         "symfony/symfony": "^3.3",
         "twig/extensions": "^1.5",
@@ -62,7 +64,8 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
+            "chmod -R 777 var"
         ],
         "post-install-cmd": [
             "@symfony-scripts"

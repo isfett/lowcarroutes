@@ -1,7 +1,18 @@
-// loads the Bootstrap jQuery plugins
-import 'bootstrap-sass/assets/javascripts/bootstrap/dropdown.js';
-import 'bootstrap-sass/assets/javascripts/bootstrap/modal.js';
-import 'bootstrap-sass/assets/javascripts/bootstrap/transition.js';
+var $ = require('jquery');
 
-// loads the code syntax highlighting library
-import './highlight.js';
+require('bootstrap-sass');
+
+import { readonly } from 'core-decorators';
+
+import Map from "./components/Map";
+
+if($('#map').size())
+{
+    let map = new Map(MAPQUEST_APIKEY,'map',API_PATHS.speedbump);
+    map.setCenter([-74.005900, 40.712800]);
+    map.setZoom(12);
+    map.setPitch(60);
+    map.setStart('350 5th Ave, New York, NY 10118');
+    map.setDestination('One Liberty Plaza, New York, NY 10006');
+    map.load();
+}

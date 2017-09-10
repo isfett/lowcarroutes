@@ -1,4 +1,10 @@
 var Encore = require('@symfony/webpack-encore');
+var Webpack = require('webpack');
+var WebpackNotifierPlugin = require('webpack-notifier');
+var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+var WebpackShellPlugin = require('webpack-shell-plugin');
+
+var isProd = Encore.isProduction();
 
 Encore
     .setOutputPath('web/build/')
@@ -17,8 +23,20 @@ Encore
     .addEntry('js/login', './assets/js/login.js')
     .addEntry('js/admin', './assets/js/admin.js')
     .addEntry('js/search', './assets/js/search.js')
-    .addStyleEntry('css/app', ['./assets/scss/app.scss'])
+    .addEntry('js/propeller', './assets/js/propeller.js')
+    .addStyleEntry('css/app', ['./assets/scss/app.scss','./assets/css/propeller.css'])
     .addStyleEntry('css/admin', ['./assets/scss/admin.scss'])
+    .addPlugin(new WebpackNotifierPlugin({'title':'LowCarRoutes Webpack Build'}))
+    .addPlugin(new UglifyJSPlugin({
+        'comments': isProd===false,
+        'compress': {
+            'warnings': false,
+            'drop_console': isProd===true,
+        }
+    }))
 ;
 
-module.exports = Encore.getWebpackConfig();
+var config = Encore.getWebpackConfig();
+config.watchOptions = {poll: true, ignored: ['./node/modules/','./web/'], aggregateTimeout: 3000};
+
+module.exports = config;
