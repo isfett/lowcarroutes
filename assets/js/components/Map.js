@@ -30,16 +30,23 @@ class Map {
     loadSpeedBumps()
     {
         let Map = this;
+        return axios.get(this.internal_api_route);
         axios.get(this.internal_api_route)
             .then(function (response) {
                 for(let data of response.data)
                 {
                     Map.speedbumps.push(new SpeedBump(data));
                 }
-                Map.createRoute();
+                /* instanbul ignore next */
+                if(this.start && this.destination)
+                {
+                    Map.createRoute();
+                }
+                done(response);
             })
             .catch(function (error) {
                 console.log(error);
+                done(error);
             });
     }
     getOptions/* istanbul ignore next */()
@@ -113,10 +120,7 @@ class Map {
     load/* istanbul ignore next */()
     {
         this.map = new mqgl.Map(this.id, this.mapquest_apikey, this.options);
-        if(this.start && this.destination)
-        {
-            this.loadSpeedBumps();
-        }
+        this.loadSpeedBumps();
     }
     fitBounds/* istanbul ignore next */()
     {

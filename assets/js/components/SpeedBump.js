@@ -9,6 +9,18 @@ class SpeedBump
     };
     constructor(data)
     {
+        if(typeof data === 'undefined')
+        {
+            throw new Error('"data" is required.');
+        }
+        if(typeof data !== 'object')
+        {
+            throw new Error('"data" must be an object.');
+        }
+        if(Array.isArray(data))
+        {
+            throw new Error('"data" must be an object.');
+        }
         this.id = data.id;
         this.height = data.height;
         this.point = new Point(data.point);
@@ -32,11 +44,21 @@ class SpeedBump
     }
     getStatusLabel()
     {
-        // todo
+        for(var statusLabel in this.statuses)
+        {
+            if(this.statuses[statusLabel] === this.status)
+            {
+                return statusLabel;
+            }
+        }
     }
-    setStatus()
+    setStatus(status)
     {
-        // todo
+        this.status = status;
+    }
+    setStatusLabel(statusLabel)
+    {
+        this.status = this.statuses[statusLabel];
     }
 }
 

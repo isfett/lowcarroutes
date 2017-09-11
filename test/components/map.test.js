@@ -1,11 +1,14 @@
-let assert = require('chai').assert;
+let chai = require('chai');
+let assertPromised = require('chai-as-promised');
+chai.use(assertPromised);
+let assert = chai.assert;
 
 import Map from "../../assets/js/components/Map";
 describe('Map', () => {
     let map;
 
     beforeEach(() => {
-        map = new Map('testApiKey', 'map','/app_dev.php/de/speedbump/all');
+        map = new Map('testApiKey', 'map','http://lowcarroutes.dev:8081/app_dev.php/de/speedbump/all');
     });
 
     describe('#constructor()', () => {
@@ -125,6 +128,13 @@ describe('Map', () => {
         it('throw array when destination is missing', () => {
             map.setStart('350 5th Ave, New York, NY 10118');
             assert.throws(() => map.getRoute(), Error, 'You are not allowed to call "getRoute()" when there is no start and destination point.')
+        });
+    });
+
+    describe('#loadSpeedBumps', () => {
+        it('should download it', () => {
+            //assert.lengthOf(map.speedbumps,0);
+            assert.eventually.equal(map.loadSpeedBumps(),'');
         });
     });
 });
