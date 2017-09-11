@@ -10,30 +10,30 @@ class Map {
             ribbon: {
                 showTraffic: false,
             },
-        }
-
+        },
     };
     speedbumps = [];
-    constructor(MAPQUEST_APIKEY, id, route)
+    suffix_directions_id="_directions";
+    constructor(MAPQUEST_APIKEY, id, internal_api_route)
     {
-        if(typeof MAPQUEST_APIKEY === 'undefined' || typeof id === 'undefined' || typeof route === 'undefined')
+        if(typeof MAPQUEST_APIKEY === 'undefined' || typeof id === 'undefined' || typeof internal_api_route === 'undefined')
         {
-            throw new Error('"MAPQUEST_APIKEY", "id" and "route" are required.');
+            throw new Error('"MAPQUEST_APIKEY", "id" and "internal_api_route" are required.');
         }
         this.mapquest_apikey = MAPQUEST_APIKEY;
         this.id = id;
         this.element = $('#'+this.id);
-        this.route = route;
+        this.directions_id = id+this.suffix_directions_id;
+        this.directions_element = $('#'+this.directions_id);
+        this.internal_api_route = internal_api_route;
     }
     loadSpeedBumps()
     {
         let Map = this;
-        axios.get(this.route)
+        axios.get(this.internal_api_route)
             .then(function (response) {
-                console.log('response', response);
                 for(let data of response.data)
                 {
-                    console.log('data', data);
                     Map.speedbumps.push(new SpeedBump(data));
                 }
                 Map.createRoute();
@@ -129,7 +129,7 @@ class Map {
         {
             ids.push(speedbump.getPoint().getLinkId());
         }
-        return ids.join(',');
+        return ids;
     }
     createRoute/* istanbul ignore next */()
     {
@@ -141,10 +141,19 @@ class Map {
                 showTraffic: true,
             })
                 .then( data => {
-                    console.log('data', data);
                     Map.fitBounds();
+                    Map.showDirections(data)
                 });
         });
+    }
+    showDirections(data)
+    {
+        let html = '';
+        for(let leg of data.route.legs[0].maneuvers)
+        {
+            html+=leg.narrative+'<br>';
+        }
+        this.directions_element.html(html);
     }
     hide/* istanbul ignore next */()
     {

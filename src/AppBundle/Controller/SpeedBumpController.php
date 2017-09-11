@@ -55,7 +55,7 @@ class SpeedBumpController extends Controller
     public function indexAllAction($page)
     {
         $em = $this->getDoctrine()->getManager();
-        $speedBumps = $em->getRepository(SpeedBump::class)->findAll();
+        $speedBumps = $em->getRepository(SpeedBump::class)->findByStatus(SpeedBump::STATUS_CONFIRMED);
         $encoders = array(new JsonEncoder());
         $normalizer = new ObjectNormalizer();
         $normalizer->setIgnoredAttributes(array('createdBy','updatedBy'));

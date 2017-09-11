@@ -12,15 +12,15 @@ describe('Map', () => {
         it('requires three arguments', () => {
             assert.throws(() => {
                 new Map();
-            },Error,'"MAPQUEST_APIKEY", "id" and "route" are required.');
+            },Error,'"MAPQUEST_APIKEY", "id" and "internal_api_route" are required.');
 
             assert.throws(() => {
                 new Map('test');
-            },Error,'"MAPQUEST_APIKEY", "id" and "route" are required.');
+            },Error,'"MAPQUEST_APIKEY", "id" and "internal_api_route" are required.');
 
             assert.throws(() => {
                 new Map('test','map');
-            },Error,'"MAPQUEST_APIKEY", "id" and "route" are required.');
+            },Error,'"MAPQUEST_APIKEY", "id" and "internal_api_route" are required.');
 
             assert.doesNotThrow(() => {
                 new Map('test', 'map','/app_dev.php/de/speedbump/all');

@@ -104,56 +104,6 @@ class SpeedBumpTest extends KernelTestCase
         $this->assertEquals(SpeedBump::STATUS_REGISTERED, $speedBump->getStatus());
     }
 
-    public function testVersioned()
-    {
-        $point = new Point();
-        $point->setCoordinates("50.000000,50.00000");
-        $point->setLinkId(1);
-
-        $speedBump = new SpeedBump();
-        $speedBump->setPoint($point);
-        $speedBump->setHeight(5);
-
-        $this->em->persist($speedBump);
-        $this->em->flush();
-
-        $speedBumps = $this->em->getRepository(SpeedBump::class)->findAll();
-
-        $this->assertCount(1, $speedBumps);
-
-        $logEntryRepository = $this->em->getRepository('Gedmo\Loggable\Entity\LogEntry');
-
-        $logs = $logEntryRepository->getLogEntries($speedBump);
-        $this->assertCount(1, $logs);
-
-        $speedBump->setHeight(10);
-        $this->em->persist($speedBump);
-        $this->em->flush();
-
-        $logs = $logEntryRepository->getLogEntries($speedBump);
-        $this->assertCount(2, $logs);
-
-        $logs = array_reverse($logs);
-
-        /** @var LogEntry $firstLogEntry */
-        $firstLogEntry = current($logs);
-        $data = $firstLogEntry->getData();
-        $height = $data['height'];
-        $this->assertEquals(5,$height);
-
-        /** @var LogEntry $secondLogEntry */
-        $secondLogEntry = next($logs);
-        $data = $secondLogEntry->getData();
-        $height = $data['height'];
-        $this->assertEquals(10,$height);
-
-        $logEntryRepository->revert($speedBump, 1);
-        $this->assertEquals(5, $speedBump->getHeight());
-
-        $logEntryRepository->revert($speedBump, 2);
-        $this->assertEquals(10, $speedBump->getHeight());
-    }
-
     public function testComments()
     {
         $point = new Point();

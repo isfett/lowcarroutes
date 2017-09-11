@@ -48,6 +48,6 @@ RUN echo 'alias sf3="php bin/console"' >> ~/.bashrc
 RUN echo 'alias phpunit="./vendor/phpunit/phpunit/phpunit"' >> ~/.bashrc
 RUN echo 'alias watch="yarn run encore dev --watch"' >> ~/.bashrc
 RUN echo 'alias build="yarn run encore dev"' >> ~/.bashrc
-RUN echo 'alias test="npm test"' >> ~/.bashrc
+RUN echo 'alias test="npm test && phpunit"' >> ~/.bashrc
 
 WORKDIR /var/www/symfony
