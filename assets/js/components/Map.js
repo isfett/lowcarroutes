@@ -30,24 +30,18 @@ class Map {
     loadSpeedBumps()
     {
         let Map = this;
-        return axios.get(this.internal_api_route);
-        axios.get(this.internal_api_route)
-            .then(function (response) {
+        return new Promise((resolve, reject) => {
+            axios.get(this.internal_api_route).then((response) => {
                 for(let data of response.data)
                 {
                     Map.speedbumps.push(new SpeedBump(data));
                 }
-                /* instanbul ignore next */
-                if(this.start && this.destination)
-                {
-                    Map.createRoute();
-                }
-                done(response);
+                resolve(Map.speedbumps);
             })
-            .catch(function (error) {
-                console.log(error);
-                done(error);
-            });
+            .catch((error) => {
+                reject(error);
+            })
+        });
     }
     getOptions/* istanbul ignore next */()
     {
@@ -55,6 +49,7 @@ class Map {
     }
     getOption(key)
     {
+        /* istanbul ignore else */
         if(key in this.options)
         {
             return this.options[key];
@@ -120,7 +115,15 @@ class Map {
     load/* istanbul ignore next */()
     {
         this.map = new mqgl.Map(this.id, this.mapquest_apikey, this.options);
-        this.loadSpeedBumps();
+
+        let Map = this;
+        this.loadSpeedBumps().then(()=>{
+            /* instanbul ignore next */
+            if(Map.start && Map.destination)
+            {
+                Map.createRoute();
+            }
+        });
     }
     fitBounds/* istanbul ignore next */()
     {
@@ -139,6 +142,7 @@ class Map {
     {
         let Map = this;
         this.map.load( () => {
+            Map.map.icons.add({lat: 50.229236, lng: 10.082316}, 'incident-high-sm.png');
             Map.map.directions.route(Map.getRoute(),{
                 locale:'de_DE',
                 mustAvoidLinkIds: Map.getAvoidLinkIds(),
@@ -150,7 +154,7 @@ class Map {
                 });
         });
     }
-    showDirections(data)
+    showDirections/* istanbul ignore next */(data)
     {
         let html = '';
         for(let leg of data.route.legs[0].maneuvers)

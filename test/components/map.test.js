@@ -1,3 +1,5 @@
+import SpeedBump from "../../assets/js/components/SpeedBump";
+
 let chai = require('chai');
 let assertPromised = require('chai-as-promised');
 chai.use(assertPromised);
@@ -8,7 +10,7 @@ describe('Map', () => {
     let map;
 
     beforeEach(() => {
-        map = new Map('testApiKey', 'map','http://lowcarroutes.dev:8081/app_dev.php/de/speedbump/all');
+        map = new Map('testApiKey', 'map','http://nginx/app_dev.php/de/speedbump/all');
     });
 
     describe('#constructor()', () => {
@@ -133,8 +135,62 @@ describe('Map', () => {
 
     describe('#loadSpeedBumps', () => {
         it('should download it', () => {
-            //assert.lengthOf(map.speedbumps,0);
-            assert.eventually.equal(map.loadSpeedBumps(),'');
+            return map.loadSpeedBumps().then(() => {
+                assert.isAbove(map.speedbumps.length,0);
+            });
+        });
+
+        it('should download give exception on wrong url', () => {
+            map.internal_api_route = 'ggg';
+            return map.loadSpeedBumps().catch((error)=>{
+                assert.equal(error.code,'ECONNREFUSED');
+            });
+        });
+    });
+
+    describe('#getAvoidLinkIds', () => {
+        it('should get linkIds from SpeedBumps with Points', () => {
+            let data = [
+                {
+                    id : 1,
+                    status: 2,
+                    height: 5,
+                    point: {
+                        id: 1,
+                        lat: 50.000000,
+                        lng: 50.000000,
+                        linkId: 1,
+                    }
+                },
+                {
+                    id : 2,
+                    status: 2,
+                    height: 6,
+                    point: {
+                        id: 1,
+                        lat: 60.000000,
+                        lng: 60.000000,
+                        linkId: 2,
+                    }
+                },
+                {
+                    id : 3,
+                    status: 2,
+                    height: 7,
+                    point: {
+                        id: 1,
+                        lat: 70.000000,
+                        lng: 70.000000,
+                        linkId: 3,
+                    }
+                }
+            ];
+            for(let d of data)
+            {
+                map.speedbumps.push(new SpeedBump(d));
+            }
+            assert.equal(map.speedbumps.length, 3);
+            assert.deepEqual(map.getAvoidLinkIds(),[1,2,3]);
         });
     });
 });
