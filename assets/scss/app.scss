@@ -7,4 +7,7 @@ $fa-font-path: "~font-awesome/fonts";
 // the ~ allows you to reference things in node_modules
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
+@import 'util/trigonometry';
+@import 'util/random';
 @import 'components/debug';
+@import 'components/heart';

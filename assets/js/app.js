@@ -6,7 +6,7 @@ import { readonly } from 'core-decorators';
 
 import Map from "./components/Map";
 
-if(1)
+if(jQuery('#map').length > 0)
 {
     let map = new Map(MAPQUEST_APIKEY,'map',API_PATHS.speedbump);
     map.setCenter([10.082316,50.229236]);

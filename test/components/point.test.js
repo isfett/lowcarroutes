@@ -27,6 +27,14 @@ describe('Point', () => {
                 new Point(['test']);
             },Error,'"data" must be an object.');
 
+            assert.throws(() => {
+                new Point({
+                    id: 1,
+                    lng: 50.000000,
+                    linkId: 1,
+                });
+            },Error,'object key "lat" does not exist.');
+
             assert.doesNotThrow(() => {
                 new Point({
                     id: 1,

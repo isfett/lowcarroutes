@@ -114,7 +114,6 @@ class SpeedBump
     }
 
     /**
-    /**
      * @return int
      */
     public function getStatus(): int

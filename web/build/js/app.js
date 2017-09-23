@@ -6,7 +6,7 @@ webpackJsonp([1],{/***/
 /*! all exports used */
 /***/
 function(t,e,n){"use strict";/* WEBPACK VAR INJECTION */
-(function(t){var e=(n(/*! core-decorators */"./node_modules/core-decorators/es/core-decorators.js"),n(/*! ./components/Map */"./assets/js/components/Map.js")),o=function(t){return t&&t.__esModule?t:{default:t}}(e);n(/*! jquery */"./node_modules/jquery/dist/jquery.js");n(/*! bootstrap-sass */"./node_modules/bootstrap-sass/assets/javascripts/bootstrap.js");var r=new o.default(MAPQUEST_APIKEY,"map",API_PATHS.speedbump);r.setCenter([10.082316,50.229236]),r.setZoom(16),r.setPitch(40),r.setStart("Kreuzweg 1, 97688 Bad Kissingen"),r.setDestination("Brunngasse 8, 97720 Nüdlingen"),r.load()}).call(e,n(/*! jquery */"./node_modules/jquery/dist/jquery.js"))},/***/
+(function(t){var e=(n(/*! core-decorators */"./node_modules/core-decorators/es/core-decorators.js"),n(/*! ./components/Map */"./assets/js/components/Map.js")),o=function(t){return t&&t.__esModule?t:{default:t}}(e);t=n(/*! jquery */"./node_modules/jquery/dist/jquery.js");if(n(/*! bootstrap-sass */"./node_modules/bootstrap-sass/assets/javascripts/bootstrap.js"),t("#map").length>0){var r=new o.default(MAPQUEST_APIKEY,"map",API_PATHS.speedbump);r.setCenter([10.082316,50.229236]),r.setZoom(16),r.setPitch(40),r.setStart("Kreuzweg 1, 97688 Bad Kissingen"),r.setDestination("Brunngasse 8, 97720 Nüdlingen"),r.load()}}).call(e,n(/*! jquery */"./node_modules/jquery/dist/jquery.js"))},/***/
 "./assets/js/components/Map.js":/*!*************************************!*\
   !*** ./assets/js/components/Map.js ***!
   \*************************************/
