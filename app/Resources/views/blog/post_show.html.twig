@@ -14,6 +14,9 @@
 
     {{ include('blog/_post_tags.html.twig') }}
 
+    {{ include('util/like.html.twig', {'obj': post, 'type': 'post'}) }}
+
+
     <div id="post-add-comment" class="well">
         {# The 'IS_AUTHENTICATED_FULLY' role ensures that the user has entered
         his/her credentials (login + password) during this session. If he/she
@@ -46,9 +49,14 @@
                    avoid errors when the 'intl' PHP extension is not available and the application
                    is forced to use the limited "intl polyfill", which only supports UTC and GMT #}
                 <strong>{{ comment.createdAt|localizeddate('medium', 'short', null, 'UTC') }}</strong>
+                <br><br>
+                {{ include('util/like.html.twig', {'obj': comment, 'type': 'comment'}) }}
             </h4>
             <div class="col-sm-9">
                 {{ comment.content|md2html }}
+            </div>
+            <div class="col-sm-2 col-sm-offset-10">
+
             </div>
         </div>
     {% else %}

@@ -14,6 +14,22 @@ class Point
         {
             throw new Error('"data" must be an object.');
         }
+        if(data.hasOwnProperty('id') === false)
+        {
+            throw new Error('object key "id" does not exist.');
+        }
+        if(data.hasOwnProperty('lat') === false)
+        {
+            throw new Error('object key "lat" does not exist.');
+        }
+        if(data.hasOwnProperty('lng') === false)
+        {
+            throw new Error('object key "lng" does not exist.');
+        }
+        if(data.hasOwnProperty('linkId') === false)
+        {
+            throw new Error('object key "linkId" does not exist.');
+        }
         this.id = data.id;
         this.lat = data.lat;
         this.lng = data.lng;

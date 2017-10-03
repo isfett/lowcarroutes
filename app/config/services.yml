@@ -61,3 +61,37 @@ services:
                 # optional priority
                 # priority: 300
         public: false
+
+    # managers are imported separately to make sure they're public
+    # and autoconfigured
+    appbundle.manager.comment:
+        class: AppBundle\Manager\CommentManager
+        arguments: ["@doctrine.orm.entity_manager","@appbundle.manager.user"]
+        public: true
+    appbundle.manager.like:
+        class: AppBundle\Manager\LikeManager
+        arguments: ["@doctrine.orm.entity_manager"]
+        public: true
+    appbundle.manager.post:
+        class: AppBundle\Manager\PostManager
+        arguments: ["@doctrine.orm.entity_manager","@appbundle.manager.user"]
+        public: true
+    appbundle.manager.speedbump:
+        class: AppBundle\Manager\SpeedBumpManager
+        arguments: ["@doctrine.orm.entity_manager","@appbundle.manager.user"]
+        public: true
+    appbundle.manager.user:
+        class: AppBundle\Manager\UserManager
+        arguments: ["@doctrine.orm.entity_manager", "@security.password_encoder", "@security.token_storage"]
+        public: true
+
+
+    # just for testing js scenarios
+    appbundle.manager.dummylikeuser:
+        class: AppBundle\Manager\DummyLikeUserManager
+        arguments: ["@doctrine.orm.entity_manager"]
+        public: true
+    appbundle.manager.dummylike:
+        class: AppBundle\Manager\DummyLikeManager
+        arguments: ["@doctrine.orm.entity_manager","@appbundle.manager.dummylikeuser"]
+        public: true

@@ -12,9 +12,12 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Comment;
+use AppBundle\Entity\Like;
 use AppBundle\Entity\Post;
+use AppBundle\Entity\User;
 use AppBundle\Events;
 use AppBundle\Form\CommentType;
+use Doctrine\ORM\PersistentCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -80,7 +83,8 @@ class BlogController extends Controller
             dump($post, $this->getUser(), new \DateTime());
         }
 
-        //var_dump($post->getComments()->first()->getPost()->getTitle());
+        //var_dump($post->getComments()->first()->getRelated()->getTitle());
+        //var_dump($this->getDoctrine()->getManager()->find(User::class,3)->getComments()->first()->getRelated()->getTitle());
 
         return $this->render('blog/post_show.html.twig', ['post' => $post]);
     }

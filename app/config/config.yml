@@ -145,3 +145,8 @@ stof_doctrine_extensions:
             sluggable: true
             loggable: true
             blameable: true
+
+sensio_framework_extra:
+  request:
+    converters: true
+    auto_convert: true

@@ -1,0 +1,9 @@
+<div class="heart-container">
+    <div class="heart-box">
+        <input id="toggle-heart_{{ type }}_{{ obj.id }}" class="toggle-heart {{ ((is_granted('IS_AUTHENTICATED_FULLY')) and (obj.likedByUser(app.user))) ? 'toggled' : ''}} {{ (is_granted('IS_AUTHENTICATED_FULLY')) ?: 'notLoggedIn'}}" data-type="{{ type }}" data-id="{{ obj.id }}" data-count="{{ obj.likes.count }}" type="checkbox" {{ ((is_granted('IS_AUTHENTICATED_FULLY')) and (obj.likedByUser(app.user))) ? 'checked="checked"' : ''}} />
+        <label for="toggle-heart_{{ type }}_{{ obj.id }}" class="toggle-heart-label">❤</label>
+    </div>
+    <div class="heart-count-text">
+        <span id="count-heart_{{ type }}_{{ obj.id }}" class="heart-count {{ ((is_granted('IS_AUTHENTICATED_FULLY')==false) or (obj.likes.count == 0)) ? 'zeroCount':''}}">{{ obj.likes.count }}</span> bedanken sich dafür
+    </div>
+</div>

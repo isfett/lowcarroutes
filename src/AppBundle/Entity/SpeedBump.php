@@ -2,6 +2,11 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Interfaces\LikeableInterface;
+use AppBundle\Entity\Traits\BlameableUserEntity;
+use AppBundle\Entity\Traits\CommentTrait;
+use AppBundle\Entity\Traits\IdTrait;
+use AppBundle\Entity\Traits\LikeTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
@@ -13,34 +18,57 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SpeedBumpRepository")
- * @ORM\Table(name="speed_bumps")
+ * @ORM\Table(name="speedbumps")
  *
  * @Vich\Uploadable
  * @Gedmo\Loggable
  *
- * Defines the properties of the SpeedBump entity to represent the speed bumps for the navigation.
+ * @ORM\AssociationOverrides({
+ *    @ORM\AssociationOverride(name="likes",
+ *      joinTable=@ORM\JoinTable(
+ *          name="speedbump_likes"
+ *      )
+ *    ),
+ *    @ORM\AssociationOverride(name="comments",
+ *      joinTable=@ORM\JoinTable(
+ *          name="speedbump_comments"
+ *      )
+ *    )
+ * })
  *
- * @author Chris Stenke <chris@isfett.com>
+ *
  */
-class SpeedBump
+class SpeedBump implements LikeableInterface
 {
     const STATUS_REGISTERED = 1;
     const STATUS_CONFIRMED = 2;
     const STATUS_REPORTED = 3;
     const STATUS_DELETED = 4;
 
+    use IdTrait;
     use TimestampableEntity;
     use SoftDeleteableEntity;
     use BlameableUserEntity;
+    use LikeTrait;
+    use CommentTrait;
 
     /**
-     * @var int
+     * @var Like[]|ArrayCollection
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Like",inversedBy="speedBumps", cascade={"persist"})
+     * @ORM\JoinTable()
+     * @ORM\OrderBy({"createdAt": "DESC"})
      */
-    private $id;
+    private $likes;
+
+    /**
+     * @var Comment[]|ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Comment", inversedBy="speedBumps", cascade={"persist"})
+     * @ORM\JoinTable()
+     * @ORM\OrderBy({"createdAt": "DESC"})
+     */
+    private $comments;
 
     /**
      * @var Point
@@ -72,15 +100,6 @@ class SpeedBump
     private $status;
 
     /**
-     * @var Comment[]|ArrayCollection
-     *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Comment", cascade={"persist"})
-     * @ORM\JoinTable(name="speedbump_comments")
-     * @ORM\OrderBy({"createdAt": "DESC"})
-     */
-    private $comments;
-
-    /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
      * @Vich\UploadableField(mapping="speedbumpt_image", fileNameProperty="imageName")
@@ -103,14 +122,7 @@ class SpeedBump
     {
         $this->status = self::STATUS_REGISTERED;
         $this->comments = new ArrayCollection();
-    }
-
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
+        $this->likes = new ArrayCollection();
     }
 
     /**
@@ -159,23 +171,6 @@ class SpeedBump
     public function setHeight($height)
     {
         $this->height = $height;
-    }
-
-    public function getComments()
-    {
-        return $this->comments;
-    }
-
-    public function addComment(Comment $comment)
-    {
-        if (!$this->comments->contains($comment)) {
-            $this->comments->add($comment);
-        }
-    }
-
-    public function removeComment(Comment $comment)
-    {
-        $this->comments->removeElement($comment);
     }
 
     /**

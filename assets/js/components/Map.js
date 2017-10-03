@@ -31,7 +31,7 @@ class Map {
     {
         let Map = this;
         return new Promise((resolve, reject) => {
-            axios.get(this.internal_api_route).then((response) => {
+            axios.get(Map.internal_api_route).then((response) => {
                 for(let data of response.data)
                 {
                     Map.speedbumps.push(new SpeedBump(data));

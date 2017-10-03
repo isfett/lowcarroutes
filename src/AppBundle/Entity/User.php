@@ -11,12 +11,15 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Traits\IdTrait;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
- * @ORM\Table(name="symfony_demo_user")
+ * @ORM\Table(name="users")
  *
  * Defines the properties of the User entity to represent the application users.
  * See https://symfony.com/doc/current/book/doctrine.html#creating-an-entity-class
@@ -29,14 +32,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface, \Serializable
 {
-    /**
-     * @var int
-     *
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    use IdTrait;
 
     /**
      * @var string
@@ -73,9 +69,24 @@ class User implements UserInterface, \Serializable
      */
     private $roles = [];
 
-    public function getId()
+    /**
+     * @var Comment[]|ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="createdBy", cascade={"persist"})
+     */
+    protected $comments;
+
+    /**
+     * @var Like[]|ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Like", mappedBy="createdBy", cascade={"persist"})
+     */
+    protected $likes;
+
+    public function __construct()
     {
-        return $this->id;
+        $this->likes = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     /**
@@ -195,5 +206,21 @@ class User implements UserInterface, \Serializable
             // see section on salt below
             // $this->salt
         ) = unserialize($serialized);
+    }
+
+    /**
+     * @return Comment[]|ArrayCollection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @return Like[]|ArrayCollection
+     */
+    public function getLikes()
+    {
+        return $this->likes;
     }
 }

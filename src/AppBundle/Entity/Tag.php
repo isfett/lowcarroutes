@@ -11,11 +11,12 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Traits\IdTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="symfony_demo_tag")
+ * @ORM\Table(name="tags")
  *
  * Defines the properties of the Tag entity to represent the post tags.
  *
@@ -25,14 +26,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Tag implements \JsonSerializable
 {
-    /**
-     * @var int
-     *
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    use IdTrait;
 
     /**
      * @var string
@@ -40,11 +34,6 @@ class Tag implements \JsonSerializable
      * @ORM\Column(type="string", unique=true)
      */
     private $name;
-
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * @param string $name

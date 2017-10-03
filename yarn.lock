@@ -1476,6 +1476,14 @@ chai-as-promised@^7.1.1:
   dependencies:
     check-error "^1.0.2"
 
+chai-spies-tdd@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/chai-spies-tdd/-/chai-spies-tdd-1.0.3.tgz#2534bcbc8385943b6f632bfd624a3af70d62f5d2"
+
+chai-spies@^0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/chai-spies/-/chai-spies-0.7.1.tgz#343d99f51244212e8b17e64b93996ff7b2c2a9b1"
+
 chai@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/chai/-/chai-4.1.2.tgz#0f64584ba642f0f2ace2806279f4f06ca23ad73c"

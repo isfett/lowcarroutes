@@ -1,21 +1,24 @@
 
-$bubble-d: 4.5rem; // bubble diameter
+$bubble-d: 3.5rem; // bubble diameter
 $bubble-r: .5*$bubble-d; // bubble-radius
 
 $particle-d: 0.375rem; // particle diameter
-$particle-r: 0.5 * $particle-d; // particle-radius
+$particle-r: 0.4 * $particle-d; // particle-radius
+
+$heartRed: #e2264d;
+$heartGrey: #aab8c2;
 
 @mixin particles($k) {
   $shadow-list: ();
   $n-groups: 8;
   $group-base-angle: 360deg / $n-groups;
-  $group-distr-r: (1 + $k * 0.4)*$bubble-r;
+  $group-distr-r: (1 + $k * 0.2)*$bubble-r;
   $spread-r: -$k * $particle-r;
 
   @for $i from 0 to $n-groups {
-    $n-particles: randomNum(2,5);
+    $n-particles: 2; //randomNum(2,5)
     $particle-base-angle: 360deg / $n-particles;
-    $particle-off-angle: randomNum(40,floor(360/$n-particles)); // offset angle from radius
+    $particle-off-angle: 60deg; // offset angle from radius - randomNum(40,floor(360/$n-particles))
     $group-curr-angle: $i * $group-base-angle - 90deg;
     $xg: $group-distr-r * cos($group-curr-angle);
     $yg: $group-distr-r * sin($group-curr-angle);
@@ -76,22 +79,49 @@ $particle-r: 0.5 * $particle-d; // particle-radius
   }
 }
 
+@keyframes heartcolor {
+  0% { color: $heartRed; }
+  100% { color: $heartGrey; }
+}
+
+.heart-container {
+  width: 200px;
+  height: 20px;
+  margin: 20px 0 10px;
+}
 
 .heart-box {
-  display: flex;
+  display: inline-flex;
   justify-content: center;  //horizontal alignment
   margin: 0;
-  height: 200px;
-  width: 100%;
-  background-color: white;
+  height: inherit;
+  width: 20px;
+}
+
+.heart-count-text {
+  margin-left: 10px;
+  font-size: 10px;
+  display: inline-block;
+  position: absolute;
+  .heart-count:not(.zeroCount) {
+    color: $heartRed;
+  }
 }
 
 .toggle-heart {
   position: absolute;
   left: -100vw;
 
+  &.notLoggedIn + .toggle-heart-label {
+    cursor: default !important;
+    color: $heartRed;
+  }
+
   &:checked + .toggle-heart-label {
-    color: #e2264d;
+    color: $heartRed;
+  }
+
+  &:checked:not(.toggled):not(.notLoggedIn) + .toggle-heart-label {
     will-change: font-size, transform;
     animation: heart 1s cubic-bezier(.17, .89, .32, 1.49), shake 0.5s linear 1s;
 
@@ -112,14 +142,18 @@ $particle-r: 0.5 * $particle-d; // particle-radius
       animation-duration: 3.5s;
     }
   }
+
+  &.untoggle:not(:checked) + .toggle-heart-label {
+    will-change: color;
+    animation: heartcolor 1s ease-out;
+  }
 }
 
 .toggle-heart-label {
-  color: #aab8c2;
-  font-size: 4em;
+  color: $heartGrey;
+  font-size: 2em;
   cursor: pointer;
   align-self: center;
-  transform: rotate(0deg);
 
   &:before, &:after {
     position: absolute;

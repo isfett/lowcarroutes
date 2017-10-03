@@ -29,11 +29,35 @@ describe('Point', () => {
 
             assert.throws(() => {
                 new Point({
+                    lng: 50.000000,
+                    lat: 50.000000,
+                    linkId: 1,
+                });
+            },Error,'object key "id" does not exist.');
+
+            assert.throws(() => {
+                new Point({
                     id: 1,
                     lng: 50.000000,
                     linkId: 1,
                 });
             },Error,'object key "lat" does not exist.');
+
+            assert.throws(() => {
+                new Point({
+                    id: 1,
+                    lat: 50.000000,
+                    linkId: 1,
+                });
+            },Error,'object key "lng" does not exist.');
+
+            assert.throws(() => {
+                new Point({
+                    id: 1,
+                    lng: 50.000000,
+                    lat: 50.000000,
+                });
+            },Error,'object key "linkId" does not exist.');
 
             assert.doesNotThrow(() => {
                 new Point({

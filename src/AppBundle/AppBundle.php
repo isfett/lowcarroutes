@@ -11,7 +11,10 @@
 
 namespace AppBundle;
 
+use AppBundle\Entity\User;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 /**
  * This class is the one that transforms the src/AppBundle/ directory into a real

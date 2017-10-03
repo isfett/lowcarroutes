@@ -11,27 +11,66 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Interfaces\LikeableInterface;
+use AppBundle\Entity\Traits\CommentTrait;
+use AppBundle\Entity\Traits\IdTrait;
+use AppBundle\Entity\Traits\LikeTrait;
+use AppBundle\Entity\Traits\TagTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PostRepository")
- * @ORM\Table(name="symfony_demo_post")
+ * @ORM\Table(name="posts")
  *
- * Defines the properties of the Post entity to represent the blog posts.
  *
- * See https://symfony.com/doc/current/book/doctrine.html#creating-an-entity-class
+ * @ORM\AssociationOverrides({
+ *    @ORM\AssociationOverride(name="comments",
+ *      joinTable=@ORM\JoinTable(
+ *          name="post_comments"
+ *      )
+ *    ),
+ *    @ORM\AssociationOverride(name="tags",
+ *      joinTable=@ORM\JoinTable(
+ *          name="post_tags"
+ *      )
+ *    ),
+ *    @ORM\AssociationOverride(name="likes",
+ *      joinTable=@ORM\JoinTable(
+ *          name="post_likes"
+ *      )
+ *    )
+ * })
  *
- * Tip: if you have an existing database, you can generate these entity class automatically.
- * See https://symfony.com/doc/current/cookbook/doctrine/reverse_engineering.html
  *
- * @author Ryan Weaver <weaverryan@gmail.com>
- * @author Javier Eguiluz <javier.eguiluz@gmail.com>
- * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
-class Post
+class Post implements LikeableInterface
 {
+    use IdTrait;
+    use LikeTrait;
+    use CommentTrait;
+    use TagTrait;
+
+    /**
+     * @var Like[]|ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Like",inversedBy="posts", cascade={"persist"})
+     * @ORM\JoinTable()
+     * @ORM\OrderBy({"createdAt": "DESC"})
+     */
+    private $likes;
+
+    /**
+     * @var Comment[]|ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Comment", inversedBy="posts", cascade={"persist"})
+     * @ORM\JoinTable()
+     * @ORM\OrderBy({"createdAt": "DESC"})
+     */
+    private $comments;
+
     /**
      * Use constants to define configuration options that rarely change instead
      * of specifying them in app/config/config.yml.
@@ -39,15 +78,6 @@ class Post
      * See https://symfony.com/doc/current/best_practices/configuration.html#constants-vs-configuration-options
      */
     const NUM_ITEMS = 10;
-
-    /**
-     * @var int
-     *
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
 
     /**
      * @var string
@@ -97,35 +127,12 @@ class Post
      */
     private $author;
 
-    /**
-     * @var Comment[]|ArrayCollection
-     *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Comment", cascade={"persist"})
-     * @ORM\JoinTable(name="symfony_demo_post_comment")
-     * @ORM\OrderBy({"createdAt": "DESC"})
-     */
-    private $comments;
-
-    /**
-     * @var Tag[]|ArrayCollection
-     *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", cascade={"persist"}, inversedBy="post")
-     * @ORM\JoinTable(name="symfony_demo_post_tag")
-     * @ORM\OrderBy({"name": "ASC"})
-     * @Assert\Count(max="4", maxMessage="post.too_many_tags")
-     */
-    private $tags;
-
     public function __construct()
     {
         $this->publishedAt = new \DateTime();
         $this->comments = new ArrayCollection();
         $this->tags = new ArrayCollection();
-    }
-
-    public function getId()
-    {
-        return $this->id;
+        $this->likes = new ArrayCollection();
     }
 
     public function getTitle()
@@ -193,23 +200,6 @@ class Post
         $this->author = $author;
     }
 
-    public function getComments()
-    {
-        return $this->comments;
-    }
-
-    public function addComment(Comment $comment)
-    {
-        if (!$this->comments->contains($comment)) {
-            $this->comments->add($comment);
-        }
-    }
-
-    public function removeComment(Comment $comment)
-    {
-        $this->comments->removeElement($comment);
-    }
-
     public function getSummary()
     {
         return $this->summary;
@@ -221,22 +211,5 @@ class Post
     public function setSummary($summary)
     {
         $this->summary = $summary;
-    }
-
-    public function addTag(Tag $tag)
-    {
-        if (!$this->tags->contains($tag)) {
-            $this->tags->add($tag);
-        }
-    }
-
-    public function removeTag(Tag $tag)
-    {
-        $this->tags->removeElement($tag);
-    }
-
-    public function getTags()
-    {
-        return $this->tags;
     }
 }

@@ -11,38 +11,53 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Interfaces\LikeableInterface;
+use AppBundle\Entity\Traits\BlameableUserEntity;
+use AppBundle\Entity\Traits\IdTrait;
+use AppBundle\Entity\Traits\LikeTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="symfony_demo_comment")
+ * @ORM\Table(name="comments")
  *
- * Defines the properties of the Comment entity to represent the blog comments.
- * See https://symfony.com/doc/current/book/doctrine.html#creating-an-entity-class
+ * @ORM\AssociationOverrides({
+ *    @ORM\AssociationOverride(name="likes",
+ *      joinTable=@ORM\JoinTable(
+ *          name="comment_likes"
+ *      )
+ *    )
+ * })
  *
- * Tip: if you have an existing database, you can generate these entity class automatically.
- * See https://symfony.com/doc/current/cookbook/doctrine/reverse_engineering.html
- *
- * @author Ryan Weaver <weaverryan@gmail.com>
- * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-class Comment
+class Comment implements LikeableInterface
 {
+    use IdTrait;
     use TimestampableEntity;
     use BlameableUserEntity;
+    use LikeTrait;
 
     /**
-     * @var int
-     *
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @var User
+     * @Gedmo\Blameable(on="create")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="comments", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $id;
+    protected $createdBy;
+
+    /**
+     * @var Like[]|ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Like",inversedBy="comments", cascade={"persist"})
+     * @ORM\JoinTable()
+     * @ORM\OrderBy({"createdAt": "DESC"})
+     */
+    private $likes;
 
     /**
      * @var string
@@ -59,14 +74,14 @@ class Comment
     private $content;
 
     /**
-     * @var Post[]|PersistentCollection
+     * @var Post[]|ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Post", mappedBy="comments")
      */
     private $posts;
 
     /**
-     * @var SpeedBump[]|PersistentCollection
+     * @var SpeedBump[]|ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\SpeedBump", mappedBy="comments")
      */
@@ -74,9 +89,9 @@ class Comment
 
     public function __construct()
     {
-        $this->publishedAt = new \DateTime();
         $this->posts = new ArrayCollection();
         $this->speedBumps = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     /**
@@ -88,14 +103,6 @@ class Comment
         $containsInvalidCharacters = false !== mb_strpos($this->content, '@');
 
         return !$containsInvalidCharacters;
-    }
-
-    /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**
@@ -115,24 +122,77 @@ class Comment
     }
 
     /**
+     * @return Post[]|ArrayCollection|PersistentCollection
+     */
+    public function getPosts()
+    {
+        return $this->posts;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPostComment() {
+        return $this->posts->count() > 0;
+    }
+
+    /**
      * @return Post
      */
     public function getPost()
     {
-        return $this->posts->count() ? $this->posts->first() : null;
+        return $this->isPostComment() ? $this->posts->first() : null;
     }
 
+    public function isSpeedBumpComment()
+    {
+        return $this->speedBumps->count() > 0;
+    }
+
+    /**
+     * @return SpeedBump[]|ArrayCollection|PersistentCollection
+     */
+    public function getSpeedBumps()
+    {
+        return $this->speedBumps;
+    }
 
     /**
      * @return SpeedBump
      */
     public function getSpeedBump()
     {
-        return $this->speedBumps->count() ? $this->speedBumps->first() : null;
+        return $this->isSpeedBumpComment() ? $this->speedBumps->first() : null;
     }
 
-    public function setSpeedBump(SpeedBump $speedBump)
+
+    /**
+     * @param string $type
+     * @return bool
+     */
+    public function is($type = 'post')
     {
-        $this->speedBumps = new ArrayCollection(array($speedBump));
+        $funcName = 'is'.ucfirst($type).'Like';
+        if(is_callable(array($this, $funcName)))
+        {
+            return call_user_func(array($this, $funcName));
+        }
+        return false;
+    }
+
+    /**
+     * @return Post|SpeedBump|null
+     */
+    public function getRelated()
+    {
+        if($this->isPostComment())
+        {
+            return $this->getPost();
+        }
+        else if($this->isSpeedBumpComment())
+        {
+            return $this->getSpeedBump();
+        }
+        return null;
     }
 }

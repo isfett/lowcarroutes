@@ -2,44 +2,45 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Traits\BlameableUserEntity;
+use AppBundle\Entity\Traits\CommentTrait;
+use AppBundle\Entity\Traits\IdTrait;
+use AppBundle\Entity\Traits\LikeTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PavementStreetRepository")
- * @ORM\Table(name="pavement_streets")
+ * @ORM\Table(name="pavementstreets")
  *
  * Defines the properties of the SpeedBump entity to represent the speed bumps for the navigation.
  *
  * @author Chris Stenke <chris@isfett.com>
+ *
+ * @ORM\AssociationOverrides({
+ *    @ORM\AssociationOverride(name="likes",
+ *      joinTable=@ORM\JoinTable(
+ *          name="pavementstreet_likes"
+ *      )
+ *    ),
+ *    @ORM\AssociationOverride(name="comments",
+ *      joinTable=@ORM\JoinTable(
+ *          name="pavementstreet_comments"
+ *      )
+ *    )
+ * })
+ *
+ *
  */
 class PavementStreet
 {
-    /**
-     * @var int
-     *
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(type="datetime")
-     * @Assert\DateTime
-     */
-    private $publishedAt;
-
-    /**
-     * @var User
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $author;
+    use IdTrait;
+    use TimestampableEntity;
+    use BlameableUserEntity;
+    use LikeTrait;
+    use CommentTrait;
 
     /**
      * @var Point
@@ -60,38 +61,8 @@ class PavementStreet
 
     public function __construct()
     {
-        $this->publishedAt = new \DateTime();
-    }
-
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function getPublishedAt(): \DateTime
-    {
-        return $this->publishedAt;
-    }
-
-    public function setPublishedAt(\DateTime $publishedAt)
-    {
-        $this->publishedAt = $publishedAt;
-    }
-
-    /**
-     * @return User
-     */
-    public function getAuthor()
-    {
-        return $this->author;
-    }
-
-    /**
-     * @param User $author
-     */
-    public function setAuthor(User $author)
-    {
-        $this->author = $author;
+        $this->likes = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     /**
